@@ -4,7 +4,9 @@
 //参考URL
 /*	JavaScript-MDN(MozillaDeveloperNetwork)
  *	https://developer.mozilla.org/ja/docs/Web/JavaScript
- * 
+ * 	
+ *	ドットインストール
+ *	http://dotinstall.com/lessons/basic_javascript_v2
  */
 
 
