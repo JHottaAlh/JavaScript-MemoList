@@ -201,3 +201,87 @@ $(function() {
 			$(this).text(e.pageX);				//X座標を表示
 		});
 });
+
+//---------------------------------------------------------focus, blur, change---------------------------------------------------------
+
+<input type = "text" id = "name">
+<select id = "members" name = "menbers">
+	<option>taguchi</option>
+	<option>noguchi</option>
+	<option>sakichi</option>
+</select>
+
+//focusした時に色を赤にし、外れた時に白に戻す
+$(function() {
+	$("#name")
+		.focus(function() {
+			$(this).css("background", "red");
+		})
+		.blur(function() {
+			$(this).css("background", "white");
+		});
+	//membersの値が変わった時にアラートを出す
+	$("#members").change(function() {
+		alert("changed!");
+	});
+});
+
+//---------------------------------------------------------onメソッド---------------------------------------------------------
+
+//動的に作られた要素に対してイベントを割り当てる
+//documentを読み込むときにはまだ存在していないものにイベントを割り当てるには
+//onメソッドを使う
+<p>jQueryの練習</p>
+<button>add!</button>
+
+//buttonを押すとclass = vanishの<p>が作られる
+$(function() {
+	$("button").click(function() {
+		var p = $("<p>").text("vanish!").addClass("vanish");
+		$(this).before(p);
+	});
+	//vanish要素をクリックすることでその要素を削除できる
+	$("body").on("click", ".vanish", (function() {
+		$(this).remove();
+});
+
+//Ajax(Asynchronous JavaScript + XML)
+//非同期:処理が終わる前に次の処理に移る
+//サーバーと通信 + ページの書き換え
+---------more.html---------
+<p id = "message">hello!</p>
+
+
+//---------------------------------------------------------loadメソッド---------------------------------------------------------
+		     
+<button>もっと読む</button>
+<div id = "result"></div>
+$(function() {
+	$("button").click(function() {
+		//id = resultを押すとファイルを読み込む
+		$("#result").load("more.html", function() {
+			//読み込んだ後で処理をするために第二引数でfunctionで囲む -> コールバック関数
+			$("#message").css("color", "red");
+		});
+	});
+});
+
+
+//----------------------------------------------------getメソッドとpostメソッド-------------------------------------------------------
+	
+//$.get			データを取得するだけ
+//$.post		データを更新することもある場合に使う
+//読み込みに加えて値を渡して複雑な処理をする場合に使う
+<p>
+	<input type = "text" name = "name" id = "name">
+	<input type = "button" id = "greet" value = "greet">
+</p>
+<script>
+	$("#greet").click(function() {
+		$.get("ファイル名", {
+			name: $("#name").val()		//パラメータ(nameキーに#nameのvalueを渡す)
+		}, function(data) {			//ファイル名の結果をコールバック関数の引数に入れ込む
+			$("#result").html(data);	//どういう書き換えをするか
+		});
+	});
+</script>
