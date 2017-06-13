@@ -40,3 +40,43 @@ $(function() {
 	});
 });
 </script>
+
+
+//------------------------------------------------------droppable------------------------------------------------------
+//別の要素にドロップした時に何らかの処理をする
+<div class = "target">target</div>
+
+<style>
+.box {
+	width: 50px;
+	height: 50px;
+	background: #ccc;
+	margin-bottom: 20px;
+}
+.target {
+	width: 100px;
+	height: 100px;
+	background: pink;
+}
+.hover {
+	background: red;
+}
+
+</style>
+
+<script>
+$(function() {
+	$(".box").draggable({
+		helper: "clone"
+	});
+	$(".target").droppable({
+		accept: ".box",
+		hoverClass: "hover",
+		tolerance: "fit",	//要素に完全に入りきった時に判定
+		drop: function() {
+			ui.draggable.clone().appendTo(this);
+			console.log("dropped!");
+		}
+	});
+});
+</script>
