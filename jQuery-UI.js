@@ -80,3 +80,36 @@ $(function() {
 	});
 });
 </script>
+
+//------------------------------------------------------resizable------------------------------------------------------
+//要素のサイズを変更
+
+$(function() {
+	$(".box").draggable.resizable({
+		handles: "all",
+		aspevtRatio: true,		//縦横比を保持
+		stop: function (event, ui) {
+			console.log(ui.size.height, ui.size.width);	//リサイズ後の縦横の大きさをコンソールに出力
+		}
+	});
+});
+
+
+//------------------------------------------------------selectable------------------------------------------------------
+
+$(function() {
+	var selected = new Array();
+	$("#selectable").selectable({
+		selected: function(event, ui){		//選択されたものを配列に追加
+			if (selected.indexOf(ui.selected.id)== -1){		//重複するものは配列に追加しない
+				selected.push(ui.selected.id);
+			}
+			console.log(selected);
+		},
+		unselected: function(event, ui) {	//選択解除で配列から削除
+			var id = ui.unselected.id;
+			selected.splice(selected.indexOF(id), 1);
+			console.log(selected);
+		}
+	});
+});
