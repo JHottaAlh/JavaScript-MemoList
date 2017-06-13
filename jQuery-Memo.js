@@ -136,3 +136,68 @@ $(function() {
 $(function() {
 	$("p").remove();		//要素ごと消す
 });
+
+//---------------------------------------------------------要素の追加---------------------------------------------------------
+
+//before, after -> insertBefore, insertAfter
+//prepend, append	子要素の先頭 / 末尾に追加する
+
+//新規liをli(1)のbefore(前)に追加。textはjust added
+$(function() {
+	var li = $("<li>").text("just added");
+	$("ul > li:eq(1)").before(li);			
+	li.insertBefore($("ul > li:eq(1)"));	//どちらの書き方も動作は同じ
+});
+
+$(function() {
+	$("ul").append(li);
+	li.appendTo($("ul"));	//どちらの書き方も動作は同じ
+});
+
+
+//---------------------------------------------------------エフェクト---------------------------------------------------------
+
+<div id = "box" style = "width:100px; height:100px; background:red;"></div>
+
+$(function() {
+	//hide, show
+	//fadeOut, fadeIn
+	//toggle
+	$("#box").hide(800);	//ミリ秒 -> 0.8秒
+	$("#box").fadeOut(800);
+	$("#box").toggle(800);	//表示されていたら消え、消えていたら表示
+});
+//消えたら処理を実行する
+$(function() {
+	$("#box").fadeOut(800, function() {
+		alert("gone!");
+	});
+});
+
+//---------------------------------------------------------イベント---------------------------------------------------------
+
+//click
+//mouseover, mouseout, mousemove
+
+//box要素をクリックしたらアラートが表示される
+$(function() {
+	$("#box").click(function() {
+		alert("hi!");
+	});
+});
+
+//マウスが乗ると処理が実行される
+<div id = "box" style = "width:100px; height:100px; background:red;"></div>
+$(function() {
+	$("#box")
+		.mouseover(function() {
+			$(this).css("background", "green");
+		})
+		.mouseout(function() {
+			$(this).css("background", "red");
+		})
+		//マウスが乗っている時のイベント
+		.mousemove(function(e) {				//MDNのevent-object参照
+			$(this).text(e.pageX);				//X座標を表示
+		});
+});
