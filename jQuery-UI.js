@@ -10,7 +10,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 //ただし、themeを使うwidgets(ウィジェット)を利用できないのでそれらを利用する場合は公式サイトからダウンロード
 
-//draggable
+//------------------------------------------------------draggable------------------------------------------------------
+
 <div id = "box">box
 	<div class = "handle">drag here!</div>
 	<div class = "cancel">not here!</div>
