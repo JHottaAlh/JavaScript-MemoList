@@ -113,3 +113,131 @@ $(function() {
 		}
 	});
 });
+
+//------------------------------------------------------sortable------------------------------------------------------
+//文字の並びの入れ替えを実現
+//cursorをmoveにすると分かりやすい
+//opacityで透明度指定
+
+update: function(event, ui){
+	console.log($(this).sortable("serialize"));
+}
+
+
+//------------------------------------------------------accordion------------------------------------------------------
+//折りたたみ式のセクション
+見出し(<h3>など)の直下に折りたたむ対象のdiv要素を隣接させるのがルール
+<div id = "accordion">
+
+<h3><a href = "">title</a></h3>
+<div>こんにちは</div>
+
+<h3><a href = "">title2</a></h3>
+<div>こんばんは</div>
+
+</div>
+
+$(function() {
+	$("#accordion").accordion();
+});
+
+//------------------------------------------------------autocomplete------------------------------------------------------
+//一文字入れると候補が出てくる機能
+$(function() {
+	var langs = ["ja","en","cn","fr","日本","中国"];
+	$("#langs").autocomplete({
+		sorce: langs
+	});
+});
+
+//------------------------------------------------------button------------------------------------------------------
+<button>click me!!</button>
+<input type = "checkbox" id = "check"><label for = "check">check!</label>
+<div id = "set">
+<input type = "radio" name = "radio" id = "radio1"><label for = "radio1">1</label>
+<input type = "radio" name = "radio" id = "radio2"><label for = "radio2">2</label>
+<input type = "radio" name = "radio" id = "radio3"><label for = "radio3">3</label>
+</div>
+
+$(function() {
+	$("button").button();
+	$("#check").button();
+	$("input[type=radio]").button();
+	$("#set").buttonset();			//radioのボタンをひとまとめにできる
+});
+
+
+//------------------------------------------------------datepicker------------------------------------------------------
+//optionの数が多いのでほしい機能をMDNで探す
+<input type = "text" id = "datepicker">
+
+$(function() {
+	$("#datepicker").datepicker({
+		dateFormat: "yy-mm-dd"
+		numberOfMonth: 3,
+		minDate: -2,
+		maxDate: "+1M"
+	});
+});
+
+
+//------------------------------------------------------dialog------------------------------------------------------
+<button>Open!</button>
+<div id = "msg">
+こんにちは！
+</div>
+
+$(function() {
+	$("button").click(function() {
+		$("#msg").dialog("open");
+	});
+	$("#msg").dialog({
+		autoOpen: false,
+		buttons: {
+			"OK":function() {
+				$(this).dialog("close");
+			}
+		},
+		title: "title",
+		model: true		//ダイアログにフォーカスし、他の操作ができなくなる
+	});
+});
+
+
+//------------------------------------------------------progressbarとslider------------------------------------------------------
+<div id = "bar" style = "width:200px"></div>
+<div id = "slider" style = "width:200px; margin-top:20px"></div>
+
+$(function() {
+	$("#bar").progressbar({
+		value: 33
+	});
+	$("#slider").slider({
+		slider: function(event, ui){
+			console.log(ui.value);
+			$("#bar").progressbar("option", "value", ui.value);
+		}
+	});
+});
+
+//------------------------------------------------------tabs------------------------------------------------------
+<div id = "tabs">
+<ul>
+<li><a href = "#menu1">Menu1</a></li>
+<li><a href = "#menu2">Menu2</a></li>
+<li><a href = "#menu3">Menu3</a></li>
+</ul>
+
+<div id = "menu1">menu 1</div>
+<div id = "menu2">menu 2</div>
+<div id = "menu3">menu 3</div>
+
+</div>
+
+$(function() {
+	$("#tabs").tabs({
+		selected: 1			//初期値で開いておきたい値を指定
+	});
+});
+
+
