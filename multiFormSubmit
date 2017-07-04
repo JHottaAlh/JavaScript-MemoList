@@ -1,0 +1,29 @@
+<!-- javascriptで複数のフォームの値を同時に送る方法 -->
+
+<script language="javascript"><!--
+function send() {
+document.nform.submit();
+document.nform2.submit();
+}
+//--></script>
+
+<form name="nform" method="POST" action="mailto:webmaster@a.com?subject=問い合せ" enctype="text/plain"> 
+<p>お名前 ：<input type="text" name="name" size="40"></p> 
+<p> 
+メッセージ： 
+<br> 
+<textarea cols="50" rows="5" name="message"></textarea> 
+</p> 
+</form> 
+
+<form name="nform2" method="POST" action="mailto:webmaster@leposystems.com?subject=問い合せ" enctype="text/plain"> 
+<p>お名前 ：<input type="text" name="name" size="40"></p> 
+<p> 
+メッセージ： 
+<br> 
+<textarea cols="50" rows="5" name="message"></textarea> 
+</p> 
+</form>
+
+
+<input type="button" value="送信" onClick="send()">
